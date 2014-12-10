@@ -1,15 +1,11 @@
-FROM soellman/debian
-MAINTAINER Oliver Soell <oliver@soell.net>
+FROM yaronr/debian-wheezy
+MAINTAINER yaronr
 
-RUN apt-get install -y build-essential python-pip libcurl4-openssl-dev libyajl-dev btrfs-tools
-RUN cd /opt && \
-  curl http://collectd.org/files/collectd-5.4.1.tar.gz | tar zx && \
-  cd collectd-5.4.1 && \
-  ./configure --prefix=/usr/local && \
-  make && \
-  make install
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends collectd && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN pip install envtpl
 ADD collectd.conf.tpl /usr/local/etc/collectd.conf.tpl
 ADD collectd.d /usr/local/etc/collectd.d
 ADD btrfs-data.py /usr/local/bin/btrfs-data.py
