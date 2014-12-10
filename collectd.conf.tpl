@@ -12,6 +12,4 @@ LoadPlugin interface
 LoadPlugin load
 LoadPlugin memory
 
-LoadPlugin write_http
-
 Include "/usr/local/etc/collectd.d/*.conf"
