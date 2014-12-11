@@ -16,5 +16,6 @@ ADD collectd.conf /etc/collectd/collectd.conf
 ADD collectd.d /etc/collectd/collectd.d
 #ADD btrfs-data.py /usr/local/bin/btrfs-data.py
 ADD entrypoint.sh /collectd_entrypoint.sh
+RUN chmod a+x /collectd_entrypoint.sh
 
 CMD /collectd_entrypoint.sh
