@@ -6,7 +6,7 @@ ENV LOGSTASH_PORT 25826
 #ENV HOSTNAME -PLEASE SUPPLY!-
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends collectd && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends collectd libcurl4-openssl-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
  #   python btrfs-tools && \
