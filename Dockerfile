@@ -15,9 +15,6 @@ RUN rm /etc/collectd/*.*
 ADD collectd.conf /etc/collectd/collectd.conf
 ADD collectd.d /etc/collectd/collectd.d
 #ADD btrfs-data.py /usr/local/bin/btrfs-data.py
+ADD entrypoint.sh /collectd_entrypoint.sh
 
-RUN grep -r -l {{LOGSTASH_SERVER}}  /etc/collectd/collectd.d/*.conf | xargs sed -i "s/{{LOGSTASH_SERVER}}/$LOGSTASH_SERVER/g" && \
-	grep -r -l {{LOGSTASH_PORT}}    /etc/collectd/collectd.d/*.conf | xargs sed -i "s/{{LOGSTASH_PORT}}/$LOGSTASH_PORT/g" && \
- 	sed -i "s/{{HOSTNAME}}/$HOSTNAME/g" /etc/collectd/collectd.conf
-
-CMD exec collectd -f
+CMD /collectd_entrypoint.sh
