@@ -10,4 +10,4 @@ grep -r -l {{LOGSTASH_SERVER}}  /etc/collectd/collectd.d/*.conf | xargs sed -i "
 grep -r -l {{LOGSTASH_PORT}}    /etc/collectd/collectd.d/*.conf | xargs sed -i "s/{{LOGSTASH_PORT}}/$LOGSTASH_PORT/g"
 sed -i "s/{{HOSTNAME}}/$HOSTNAME/g" /etc/collectd/collectd.conf
 
-collectd -f
+exec collectd -f
